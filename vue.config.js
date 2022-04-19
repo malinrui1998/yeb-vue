@@ -10,12 +10,10 @@ proxyObj['/'] = {
     '^/': '/'
   }
 }
-
-proxyObj['/ws'] = {
-  ws: false,
-  target: 'ws://localhost:8081'
-}
-
+// proxyObj['/ws'] = {
+//   ws: false,
+//   target: 'ws://localhost:8081'
+// }
 
 module.exports = {
   devServer: {
