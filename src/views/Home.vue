@@ -41,7 +41,7 @@
           <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
             欢迎使用员工管理系统
           </div>
-          <router-view/>
+          <router-view class="homeRouter"/>
         </el-main>
       </el-container>
     </el-container>
@@ -116,5 +116,8 @@ export default {
   font-family: 新宋体;
   color: cornflowerblue;
   padding-top: 50px;
+}
+.homeRouter{
+  margin-top: 10px;
 }
 </style>

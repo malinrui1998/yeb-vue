@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,7 +10,7 @@ const routes = [
         name: 'Login',
         component: Login,
         hidden:true
-    },
+    }
 ]
 
 const router = new VueRouter({
