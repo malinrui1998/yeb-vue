@@ -71,6 +71,7 @@
 								//跳转首页
 								this.$router.replace('/home')
 							}
+              this.loading=false;
 						})
 						
 					} else {
