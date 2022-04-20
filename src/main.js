@@ -20,6 +20,7 @@ Vue.prototype.putRequest = putRequest;
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.deleteRequest = deleteRequest;
 
+
 //路由导航守卫是为了路由跳转之前做的检查及操作
 router.beforeEach((to, from, next) => {
     //判断用户是否登录，没有token，说明没有登录，就不需要初始化刷新菜单
