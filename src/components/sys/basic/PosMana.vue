@@ -54,8 +54,11 @@
             prop="enabled"
             label="是否启用"
             width="120"
-            :formatter="selectEnable"
         >
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.enabled" type="success">已启用</el-tag>
+            <el-tag v-else type="danger">未启用</el-tag>
+          </template>
         </el-table-column>
         <el-table-column
             label="操作">
@@ -81,6 +84,15 @@
         <span>职位名称</span>
         <el-input v-model="updatePos.name" class="updatePosInput"></el-input>
       </div>
+      <div style="margin-top: 10px;">
+        <span>是否启用</span>
+        <el-switch
+            v-model="updatePos.enabled"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            style="margin-left: 10px"
+        ></el-switch>
+      </div>
       <span slot="footer" class="dialog-footer">
       <el-button @click="dialogVisible = false">取 消</el-button>
      <el-button type="primary" @click="doUpdate">确 定</el-button>
@@ -100,10 +112,10 @@ export default {
       positions: [],
       dialogVisible: false,
       updatePos: {
-        name: ''
+        name: '',
+        enabled:''
       },
-      multipleSelection: [],
-      enable:[]
+      multipleSelection: []
     }
   },
   //Vue生命周期-页面加载时
@@ -130,7 +142,7 @@ export default {
           }
         })
       } else {
-        this.$message.error('职位名称不能为空');
+        this.$message.warning('职位信息不能为空');
       }
     },
     //编辑职位对话框
@@ -198,11 +210,6 @@ export default {
           message: '已取消删除'
         });
       });
-    },
-    selectEnable(){
-      this.enable=this.positions.enable;
-      console.log(enable)
-      return type == true ? "启用" : "未启用";
     }
   }
 }
@@ -211,7 +218,7 @@ export default {
 <style>
 .addPosInput {
   width: 200px;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .posManaMain {
@@ -219,7 +226,7 @@ export default {
 }
 
 .updatePosInput {
-  width: 50%;
-  margin-left: 8px;
+  width: 70%;
+  margin-left: 10px;
 }
 </style>
