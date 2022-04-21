@@ -65,12 +65,12 @@
           <template slot-scope="scope">
             <el-button
                 size="mini"
-                @click="showEditView(scope.$index, scope.row)">编辑
+                @click="showEditView(scope.row)">编辑
             </el-button>
             <el-button
                 size="mini"
                 type="danger"
-                @click="handleDelete(scope.$index, scope.row)">删除
+                @click="handleDelete(scope.row)">删除
             </el-button>
           </template>
         </el-table-column>
@@ -113,7 +113,7 @@ export default {
       dialogVisible: false,
       updatePos: {
         name: '',
-        enabled:''
+        enabled: ''
       },
       multipleSelection: []
     }
