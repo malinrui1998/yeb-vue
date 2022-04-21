@@ -152,6 +152,20 @@ export default {
       this.dialogVisible = true;
     },
 
+    //职位更新
+    doUpdate() {
+      if (this.updatePos.name) {
+        this.putRequest('/system/basic/pos/', this.updatePos).then(resp => {
+          if (resp) {
+            this.initPositions();
+            this.dialogVisible = false;
+          }
+        })
+      } else {
+        this.$message.error('职位名称不能为空');
+      }
+    },
+
     //职位删除
     handleDelete(index, data) {
       this.$confirm('此操作将永久删除[' + data.name + ']职位, 是否继续?', '提示', {
@@ -171,24 +185,13 @@ export default {
         });
       });
     },
-    //职位更新
-    doUpdate() {
-      if (this.updatePos.name) {
-        this.putRequest('/system/basic/pos/', this.updatePos).then(resp => {
-          if (resp) {
-            this.initPositions();
-            this.dialogVisible = false;
-          }
-        })
-      } else {
-        this.$message.error('职位名称不能为空');
-      }
-    },
+
     //批量选择
     handleSelectionChange(val) {
       this.multipleSelection = val;
       console.log(val)
     },
+    //批量删除
     deleteMany() {
       this.$confirm('此操作将永久删除[' + this.multipleSelection.length + ']条职位, 是否继续?', '提示', {
         confirmButtonText: '确定',
