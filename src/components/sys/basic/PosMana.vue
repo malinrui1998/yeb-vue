@@ -9,14 +9,12 @@
           @keydown.enter.native="addPosition"
           v-model="pos.name">
       </el-input>
-      <el-button size="small"
+      <el-button
                  icon="el-icon-plus"
                  type="primary"
-                 @click="addPosition">
-        添加
+                 @click="addPosition">添加
       </el-button>
       <el-button
-          size="small"
           type="danger"
           :disabled="this.multipleSelection.length==0"
           @click="deleteMany"

@@ -24,9 +24,7 @@
           size="small"
           type="primary"
           icon="el-icon-plus"
-          @click="addJoblevel"
-      >
-        添加
+          @click="addJoblevel">添加
       </el-button>
       <el-button
           size="small"
