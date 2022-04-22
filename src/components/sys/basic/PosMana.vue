@@ -5,7 +5,7 @@
           size="small"
           class="addPosInput"
           placeholder="添加职位"
-          suffix-icon="el-icon-plus"
+          prefix-icon="el-icon-plus"
           @keydown.enter.native="addPosition"
           v-model="pos.name">
       </el-input>
@@ -53,8 +53,7 @@
         <el-table-column
             prop="enabled"
             label="是否启用"
-            width="120"
-        >
+            width="120">
           <template slot-scope="scope">
             <el-tag v-if="scope.row.enabled" type="success">已启用</el-tag>
             <el-tag v-else type="danger">未启用</el-tag>
@@ -146,7 +145,7 @@ export default {
       }
     },
     //编辑职位对话框
-    showEditView(index, data) {
+    showEditView(data) {
       Object.assign(this.updatePos, data);
       this.updatePos.createDate = '';
       this.dialogVisible = true;
@@ -167,7 +166,7 @@ export default {
     },
 
     //职位删除
-    handleDelete(index, data) {
+    handleDelete(data) {
       this.$confirm('此操作将永久删除[' + data.name + ']职位, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

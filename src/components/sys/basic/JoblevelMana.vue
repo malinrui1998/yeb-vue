@@ -5,14 +5,13 @@
           size="small"
           class="addJobInput"
           placeholder="添加职称"
-          suffix-icon="el-icon-plus"
-          style="width: 300px;margin-right: 10px"
+          prefix-icon="el-icon-plus"
           v-model="jl.name">
       </el-input>
       <el-select
           size="small"
+          class="addJobInput"
           v-model="jl.titleLevel"
-          clearable
           placeholder="请选择">
         <el-option
             v-for="item in titleLevels"
@@ -25,7 +24,6 @@
           size="small"
           type="primary"
           icon="el-icon-plus"
-          style="margin-left: 10px"
           @click="addJoblevel"
       >
         添加
@@ -256,7 +254,13 @@ export default {
 
 <style scoped>
 
+.addJobInput{
+  width: 200px;
+  margin-right: 10px;
+}
+
 .jobManaMain {
+  text-align: center;
   margin-top: 10px;
 }
 .updatePosInput {

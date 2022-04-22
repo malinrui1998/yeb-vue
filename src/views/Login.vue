@@ -1,19 +1,21 @@
 <template>
   <div>
-    <el-form ref="loginForm" :rules="rules" :model="loginForm" class="loginContainer" hide-required-asterisk
-             v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading"
-             element-loading-background="rgba(0, 0, 0, 0.8)">
+    <el-form ref="loginForm"
+             :rules="rules"
+             :model="loginForm"
+             class="loginContainer"
+             hide-required-asterisk
+             v-loading="loading"
+             element-loading-text="拼命加载中">
       <h3 class="loginTitle">系统登录</h3>
-      <el-form-item label="账	号" prop="username">&nbsp;
-        <el-input type="text" v-model="loginForm.username" placeholder="输入用户名"></el-input>
-      </el-form-item>
-      <el-form-item label="密	码" prop="password">&nbsp;
-        <el-input type="password" v-model="loginForm.password" placeholder="输入密码">
-        </el-input>
+        <el-form-item label="账	号" prop="username">&nbsp;
+          <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" style="margin-left: 5px"></el-input>
+        </el-form-item>
+      <el-form-item label="密	码" prop="password">
+        <el-input type="password" v-model="loginForm.password" placeholder="输入账户密码" style="margin-left: 9px"></el-input>
       </el-form-item>
       <el-form-item label="验证码" prop="code">
-        <el-input type="code" v-model="loginForm.code" placeholder="点击图片更换验证码" style="margin-right: 5px;">
-        </el-input>
+        <el-input type="code" v-model="loginForm.code" placeholder="点击图片更换验证码" style="margin-right: 5px;"></el-input>
         <img :src="captchaUrl" @click="updateCaptcha"/>
       </el-form-item>
       <el-checkbox v-model="checked" class="loginRemember">记住我</el-checkbox>
@@ -89,7 +91,7 @@ export default {
   border-radius: 15px;
   background-clip: padding-box;
   margin: 180px auto;
-  width: 320px;
+  width: 300px;
   padding: 15px 35px 15px 35px;
   border: 1px solid #eaeaea;
   box-shadow: 0 0 25px #cac6c6;

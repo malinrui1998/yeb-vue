@@ -3,7 +3,7 @@
     <el-container>
       <el-header class="homeHeader">
         <div class="title">员工管理系统</div>
-        <el-dropdown class="userInfo" @command="commandHandler">
+        <el-dropdown class="userInfo" @command="commandHandler" >
           <span class="el-dropdown-link">{{ user.name }}
             <i><img :src="user.userFace"></i>
           </span>
@@ -101,9 +101,7 @@ export default {
   cursor: pointer;
   color: white;
   align-items: center;
-
 }
-
 .el-dropdown-link img {
   width: 48px;
   height: 48px;
