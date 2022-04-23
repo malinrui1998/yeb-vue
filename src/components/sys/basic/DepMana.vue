@@ -39,7 +39,7 @@
           <table>
             <tr>
               <td>上级部门</td>
-              <td>{{ pName }}</td>
+              <td>{{ pname }}</td>
             </tr>
             <tr>
               <td>部门名称</td>
@@ -74,7 +74,7 @@ export default {
         name: '',
         parentId: -1
       },
-      pName: ''
+      pname: ''
     }
   },
   watch: {
@@ -90,6 +90,7 @@ export default {
       if (!value) return true;
       return data.name.indexOf(value) !== -1;
     },
+    //加载部门信息
     initDeps() {
       this.getRequest('/system/basic/department/').then(resp => {
         if (resp) {
@@ -97,9 +98,10 @@ export default {
         }
       })
     },
-    showAddDep(date) {
-      this.pName = date.name;
-      this.dep.parentId = date.id;
+    //添加部门对话框
+    showAddDep(data) {
+      this.dep.parentId = data.id;
+      this.pname = data.name;
       this.dialogVisible = true;
     },
     initDep() {
@@ -107,31 +109,72 @@ export default {
         name: '',
         parentId: -1
       }
-      this.pName = ''
+      this.pname = ''
     },
+    //手动添加
     addDep2Deps(deps, dep) {
       for (let i = 0; i < deps.length; i++) {
         let d = deps[i];
         if (d.id == dep.parentId) {
           d.children = d.children.concat(dep);
+          if (d.children.length > 0) {
+            d.isParent = true
+          }
           return;
         } else {
-          this.addDep2Deps(d.children, dep)
+          this.addDep2Deps(d.children, dep);
         }
       }
     },
+    //添加部门
     doAddDep() {
       this.postRequest('/system/basic/department/', this.dep).then(resp => {
         if (resp) {
           this.addDep2Deps(this.deps, resp.obj)
           this.dialogVisible = false
           this.initDep();
+          // this.dep.parentId = -1
+          // this.dep.name = ''
+          // this.pname = ''
         }
       })
-
     },
-    deleteDep(date) {
-      console.log(date)
+    removeDepFromDeps(p, deps, id) {
+      for (let i = 0; i < deps.length; i++) {
+        let d = deps[i];
+        if (d.id == id) {
+          deps.splice(i, 1);
+          if (deps.length == 0) {
+            p.isParent = false;
+          }
+          return;
+        } else {
+          this.removeDepFromDeps(d, d.children, id);
+        }
+      }
+    }
+    ,
+    deleteDep(data) {
+      if (data.isParent) {
+        this.$message.error('该部门下有子部门无法删除')
+      } else {
+        this.$confirm('此操作将永久删除该[' + data.name + ']部门, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.deleteRequest('/system/basic/department/' + data.id).then(resp => {
+            if (resp) {
+              this.removeDepFromDeps(null, this.deps, data.id);
+            }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      }
     }
   }
 }
