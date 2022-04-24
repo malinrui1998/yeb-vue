@@ -118,7 +118,7 @@ export default {
         if (d.id == dep.parentId) {
           d.children = d.children.concat(dep);
           if (d.children.length > 0) {
-            d.isParent = true
+            d.isParent = true;
           }
           return;
         } else {
@@ -130,12 +130,9 @@ export default {
     doAddDep() {
       this.postRequest('/system/basic/department/', this.dep).then(resp => {
         if (resp) {
-          this.addDep2Deps(this.deps, resp.obj)
-          this.dialogVisible = false
+          this.addDep2Deps(this.deps, resp.object);
+          this.dialogVisible = false;
           this.initDep();
-          // this.dep.parentId = -1
-          // this.dep.name = ''
-          // this.pname = ''
         }
       })
     },
