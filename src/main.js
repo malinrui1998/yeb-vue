@@ -6,23 +6,24 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/css/font-awesome.css'
 
-import {postRequest} from './utils/api';
-import {putRequest} from './utils/api';
-import {getRequest} from './utils/api';
-import {deleteRequest} from './utils/api';
-import {initMenu} from "./utils/menus";
+import {postRequest} from '@/utils/api';
+import {putRequest} from '@/utils/api';
+import {getRequest} from '@/utils/api';
+import {deleteRequest} from '@/utils/api';
+import {initMenu} from "@/utils/menus";
+import {downloadRequest} from "@/utils/download";
 
 Vue.config.productionTip = false
 Vue.use(ElementUI,
     {
-        size:'small'
+        size: 'small'
     });
 
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.putRequest = putRequest;
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.deleteRequest = deleteRequest;
-
+Vue.prototype.downloadRequest = downloadRequest;
 
 //路由导航守卫是为了路由跳转之前做的检查及操作
 router.beforeEach((to, from, next) => {
